@@ -1,0 +1,34 @@
+{
+    "expo": {
+        "name": "Guarda-Chuva IoT",
+        "slug": "guarda-chuva-iot",
+        "version": "1.0.0",
+        "orientation": "portrait",
+        "icon": "./assets/icon.png",
+        "splash": {
+            "image": "./assets/splash.png",
+            "resizeMode": "contain",
+            "backgroundColor": "#1976d2"
+        },
+        "assetBundlePatterns": [
+            "**/*"
+        ],
+        "ios": {
+            "supportsTablet": true,
+            "bundleIdentifier": "com.seuprojeto.guardaChuvaIot"
+        },
+        "android": {
+            "package": "com.seuprojeto.guardaChuvaIot",
+            "permissions": [],
+            "adaptiveIcon": {
+                "foregroundImage": "./assets/adaptive-icon.png",
+                "backgroundColor": "#1976d2"
+            }
+        },
+        "web": {
+            "favicon": "./assets/favicon.png"
+        },
+        "description": "App para controle remoto de guarda-chuva IoT via ESP32.",
+        "userInterfaceStyle": "automatic"
+    }
+}

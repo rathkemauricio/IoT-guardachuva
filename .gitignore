@@ -1,0 +1,34 @@
+# Node
+node_modules/
+
+# Expo
+.expo/
+.expo-shared/
+web-build/
+dist/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# IDEs
+.vscode/
+.idea/
+
+# Android
+android/
+
+# iOS
+ios/
+
+# Outros
+.env
+.env.*
+*.local 
