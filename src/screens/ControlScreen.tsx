@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, StyleSheet, Alert, SafeAreaView } from 'react-native';
+import { View, StyleSheet, Alert, SafeAreaView, TouchableOpacity } from 'react-native';
 import { Button, Title, Text, ActivityIndicator, Card } from 'react-native-paper';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
@@ -9,7 +9,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 type Props = NativeStackScreenProps<any>;
 
-export default function ControlScreen({ }: Props) {
+export default function ControlScreen({ navigation }: Props) {
     const [ip, setIp] = useState('');
     const [status, setStatus] = useState('Carregando...');
     const [loading, setLoading] = useState(false);
@@ -47,25 +47,31 @@ export default function ControlScreen({ }: Props) {
     const statusFechado = status.toLowerCase().includes('fechado');
     return (
         <LinearGradient
-            colors={["#43cea2", "#185a9d"]}
+        colors={["#6a11cb", "#2575fc"]}
             style={styles.gradient}
         >
             <SafeAreaView style={styles.safeArea}>
+                <TouchableOpacity 
+                    style={styles.backButton}
+                    onPress={() => navigation.goBack()}
+                >
+                    <MaterialCommunityIcons name="arrow-left" size={24} color="#fff" />
+                </TouchableOpacity>
                 <Title style={styles.title}>Controle do Guarda-Chuva</Title>
                 <Card style={styles.card} elevation={4}>
                     <Card.Content style={{ alignItems: 'center' }}>
                         <Text style={styles.statusLabel}>Status:</Text>
                         <View style={styles.statusRow}>
                             <MaterialCommunityIcons
-                                name={statusAberto ? 'umbrella-open' : statusFechado ? 'umbrella-closed' : 'umbrella'}
+                                //
                                 size={32}
                                 color={statusAberto ? '#43cea2' : statusFechado ? '#d7263d' : '#185a9d'}
                                 style={{ marginRight: 8 }}
                             />
                             <Text style={[
                                 styles.statusValue,
-                                statusAberto && { color: '#43cea2' },
-                                statusFechado && { color: '#d7263d' }
+                                statusAberto && { color: "#2575fc" },
+                                statusFechado && { color:   "#6a11cb" }
                             ]}>
                                 {status}
                             </Text>
@@ -114,6 +120,15 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         padding: 24,
     },
+    backButton: {
+        position: 'absolute',
+        top: 50,
+        left: 20,
+        zIndex: 10,
+        padding: 8,
+        borderRadius: 20,
+        backgroundColor: 'rgba(255,255,255,0.2)',
+    },
     title: {
         fontSize: 28,
         fontWeight: 'bold',
@@ -159,10 +174,10 @@ const styles = StyleSheet.create({
         width: 240,
         borderRadius: 12,
         elevation: 2,
-        backgroundColor: '#43cea2',
+        backgroundColor: "#2575fc",
     },
-    fecharButton: {
-        backgroundColor: '#d7263d',
+        fecharButton: {
+            backgroundColor: "#6a11cb",
     },
     buttonContent: {
         height: 48,

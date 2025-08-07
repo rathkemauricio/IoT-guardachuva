@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { View, StyleSheet, Alert, SafeAreaView } from 'react-native';
+import { View, StyleSheet, Alert, SafeAreaView, TouchableOpacity } from 'react-native';
 import { Title, Text, TextInput, Button, Card } from 'react-native-paper';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { LinearGradient } from 'expo-linear-gradient';
 import { MaterialIcons } from '@expo/vector-icons';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-export default function SettingsScreen() {
+type Props = NativeStackScreenProps<any>;
+
+export default function SettingsScreen({ navigation }: Props) {
     const [ip, setIp] = useState('');
     const [loading, setLoading] = useState(false);
 
@@ -25,10 +29,16 @@ export default function SettingsScreen() {
 
     return (
         <LinearGradient
-            colors={["#f7971e", "#ffd200"]}
+        colors={["#6a11cb", "#2575fc"]}
             style={styles.gradient}
         >
             <SafeAreaView style={styles.safeArea}>
+                <TouchableOpacity 
+                    style={styles.backButton}
+                    onPress={() => navigation.goBack()}
+                >
+                    <MaterialCommunityIcons name="arrow-left" size={24} color="#fff" />
+                </TouchableOpacity>
                 <Title style={styles.title}>Configurações</Title>
                 <Card style={styles.card} elevation={4}>
                     <Card.Content>
@@ -42,7 +52,7 @@ export default function SettingsScreen() {
                             keyboardType="numeric"
                             autoCapitalize="none"
                             autoCorrect={false}
-                            left={<TextInput.Icon icon={() => <MaterialIcons name="router" size={20} color="#f7971e" />} />}
+                            left={<TextInput.Icon icon={() => <MaterialIcons name="router" size={20} color= "#2575fc" />} />}
                         />
                         <Button
                             mode="contained"
@@ -76,6 +86,15 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         padding: 24,
     },
+    backButton: {
+        position: 'absolute',
+        top: 50,
+        left: 20,
+        zIndex: 10,
+        padding: 8,
+        borderRadius: 20,
+        backgroundColor: 'rgba(255,255,255,0.2)',
+    },
     title: {
         fontSize: 28,
         fontWeight: 'bold',
@@ -98,7 +117,7 @@ const styles = StyleSheet.create({
     },
     label: {
         fontSize: 16,
-        color: '#f7971e',
+        color: "#2575fc",
         fontWeight: '600',
         marginBottom: 8,
     },
@@ -112,7 +131,7 @@ const styles = StyleSheet.create({
         marginTop: 8,
         width: '100%',
         borderRadius: 12,
-        backgroundColor: '#f7971e',
+        backgroundColor: "#2575fc",
         elevation: 2,
     },
     buttonContent: {
